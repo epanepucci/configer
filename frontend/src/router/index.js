@@ -1,23 +1,25 @@
 // frontend/src/router/index.js
-import { createRouter, createWebHistory } from "vue-router"
-import InstrumentList from "../views/InstrumentList.vue"
-import InstrumentDetail from "../views/InstrumentDetail.vue"
+import { createRouter, createWebHistory } from "vue-router";
+
+// Import views
+const InstrumentList = () => import("../views/InstrumentList.vue");
+const InstrumentDetail = () => import("../views/InstrumentDetail.vue");
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: "/",
       name: "instruments",
-      component: InstrumentList
+      component: InstrumentList,
     },
     {
       path: "/instruments/:id",
       name: "instrumentDetail",
       component: InstrumentDetail,
-      props: true
-    }
-  ]
-})
+      props: true,
+    },
+  ],
+});
 
-export default router
+export default router;

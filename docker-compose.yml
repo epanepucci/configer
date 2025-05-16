@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # Frontend service
@@ -7,7 +7,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "5173:80"
+      - "5174:80"
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -35,9 +35,10 @@ services:
 
   # Redis service with RedisJSON
   redis:
-    image: redislabs/rejson:latest
+    image: redis/redis-stack:latest
     ports:
       - "6379:6379"
+      - "8001:8001" # RedisInsight web UI for debugging
     volumes:
       - redis_data:/data
 
