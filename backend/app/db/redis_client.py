@@ -12,15 +12,13 @@ async def init_redis_pool():
         f"redis://{settings.REDIS_HOST}:{settings.REDIS_PORT}/{settings.REDIS_DB}"
     )
 
-    # Create connection pool
-    pool = redis.ConnectionPool.from_url(
+    # Create Redis client directly from URL
+    # Note: Changed from_pool to from_url as per error message
+    client = redis.Redis.from_url(
         redis_url,
         password=settings.REDIS_PASSWORD,
         decode_responses=True,  # Return strings instead of bytes
     )
-
-    # Create Redis client
-    client = redis.Redis.from_pool(pool)
 
     # Test connection
     try:
