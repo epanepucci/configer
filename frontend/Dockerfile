@@ -12,8 +12,11 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Build the application
-RUN npm run build
+# Build the application in development mode
+RUN npm run dev -- --host --mode development
+
+# Or alternatively, directly modify the build command
+# RUN NODE_ENV=development npm run build
 
 # Production stage
 FROM nginx:alpine
